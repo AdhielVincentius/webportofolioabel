@@ -64,6 +64,13 @@ export const portfolioData = {
       tech: ["Laravel", "PHP", "MySQL"],
       github: "https://github.com/AdhielVincentius/travel-app",
       image: "/images/projects/logolaravel.png"
+    }, {
+      id: 6,
+      title: "Katalog Hampers ARTBENTOYOGYA",
+      description: "Aplikasi Katalog berbentuk Website yang interaktif.",
+      tech: ["React", "JavaScript", "Html"],
+      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      image: "/images/projects/logo.png"
     }
   ],
   

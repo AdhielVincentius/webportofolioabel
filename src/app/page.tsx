@@ -109,7 +109,7 @@ export default function Home() {
             Featured <span className="text-blue-600">Projects</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioData.projects.slice(0, 5).map((project) => (
+            {portfolioData.projects.slice(0, 6).map((project) => (
               <ProjectCard key={project.id} {...project} />
             ))}
           </div>
