@@ -9,7 +9,7 @@ export const portfolioData = {
   location: "Yogyakarta, Indonesia",
   photo: "/images/fotopas.png",
   
-  about: "Mahasiswa semester akhir di Program Studi Informatika Universitas Sanata Dharma Yogyakarta. Berpengalaman dalam pengembangan web front-end dan back-end, serta pengembangan mobile menggunakan Kotlin. Aktif mengeksplorasi framework Flutter dan desain UI/UX. Memiliki pengalaman organisasi dan kepengurusan di tingkat Program Studi, Fakultas, dan Universitas.",
+  about: "Fresh Graduate dari Program Studi Informatika Universitas Sanata Dharma Yogyakarta. Berpengalaman dalam pengembangan web front-end dan back-end, serta pengembangan mobile menggunakan Kotlin. Aktif mengeksplorasi framework Flutter dan desain UI/UX. Memiliki pengalaman organisasi dan kepengurusan di tingkat Program Studi, Fakultas, dan Universitas.",
   
   skills: [
     { name: "JavaScript", level: 90 },
