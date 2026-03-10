@@ -9,7 +9,7 @@ export const portfolioData = {
   location: "Yogyakarta, Indonesia",
   photo: "/images/fotopas.png",
   
-  about: "Fresh Graduate dari Program Studi Informatika Universitas Sanata Dharma Yogyakarta. Berpengalaman dalam pengembangan web front-end dan back-end, serta pengembangan mobile menggunakan Kotlin. Aktif mengeksplorasi framework Flutter dan desain UI/UX. Memiliki pengalaman organisasi dan kepengurusan di tingkat Program Studi, Fakultas, dan Universitas.",
+  about: "Fresh Graduate Informatika dari Universitas Sanata Dharma Yogyakarta yang memiliki minat pada pengembangan web dan teknologi informasi. Berpengalaman dalam merancang dan mengembangkan sistem berbasis website maupun aplikasi mobile, baik pada sisi front-end maupun back-end. Selain itu, memiliki kemampuan dalam IT Support, UI/UX design, serta video editing untuk mendukung pengembangan produk digital yang efektif dan menarik. Aktif dalam berbagai organisasi di tingkat Program Studi, Fakultas, dan Universitas yang membentuk kemampuan kolaborasi, komunikasi, dan kepemimpinan.",
   
   skills: [
     { name: "JavaScript", level: 90 },
@@ -76,12 +76,21 @@ export const portfolioData = {
   
   education: [
     {
+      degree: "Sekolah Menengah Akhir",
+      university: "SMA Negeri 4 Yogyakarta, Yogyakarta",
+      year: "2018 - 2021",
+      gpa: "80,21",
+      achievements: [
+        "Rerata: 80,21"
+      ]
+    }
+    ,{
       degree: "S1 Teknik Informatika",
       university: "Universitas Sanata Dharma, Yogyakarta",
-      year: "2021 - Sekarang",
-      gpa: "3.54/4.0",
+      year: "2021 - 2026",
+      gpa: "3.56/4.0",
       achievements: [
-        "IPK: 3.54/4.0"
+        "IPK: 3.56/4.0"
       ]
     }
   ],
@@ -89,8 +98,8 @@ export const portfolioData = {
   experiences: [
     {
       role: "Freelance Software Developer",
-      company: "Santano",
-      period: "September 2025 - November 2025",
+      company: "Freelance",
+      period: "September 2024 - November 2025",
       description: "Bertanggung jawab dalam merancang dalam team untuk perancangan dari gambaran kasar hingga produk jadi, mengembangkan solusi front-end dan back-end"
     },
     {

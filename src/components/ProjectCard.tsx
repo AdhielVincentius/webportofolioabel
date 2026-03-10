@@ -88,38 +88,21 @@ export default function ProjectCard({
           ))}
         </div>
         
-        {/* Action Buttons */}
-        <div className="flex space-x-4 pt-4 border-t border-gray-100 mt-auto">
-          {github && (
-            <a
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-gray-600 hover:text-blue-600 transition-colors font-medium"
-            >
-              <Github size={18} className="mr-2" />
-              Code
-            </a>
-          )}
-          
+        {/* Action Buttons - Hanya Live Demo yang Tersisa */}
+        <div className="flex justify-end pt-4 border-t border-gray-100 mt-auto">
           {demo && (
             <a
               href={demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-gray-600 hover:text-green-600 transition-colors font-medium"
+              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 font-medium text-sm"
             >
-              <ExternalLink size={18} className="mr-2" />
+              <ExternalLink size={16} className="mr-2" />
               Live Demo
             </a>
           )}
           
-          {!demo && github && (
-            <span className="flex items-center text-gray-400 text-sm">
-              <ExternalLink size={16} className="mr-2" />
-              Demo coming soon
-            </span>
-          )}
+          {/* Jika tidak ada demo, tidak menampilkan apapun */}
         </div>
       </div>
     </div>
