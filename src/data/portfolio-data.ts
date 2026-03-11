@@ -43,7 +43,7 @@ export const portfolioData = {
     },
     {
       id: 3,
-      title: "Geta Padel Livestream",
+      title: "Website Padel Livestream",
       description: "Aplikasi web untuk merekam video dan Highlight Permainan Padel",
       tech: ["Laravel", "ffmpeg", "Firebase", "Supabase", "VPS", "Livewire"],
       github: "https://github.com/alexadma/PadelFix",
@@ -64,13 +64,38 @@ export const portfolioData = {
       tech: ["Laravel", "PHP", "MySQL"],
       github: "https://github.com/AdhielVincentius/travel-app",
       image: "/images/projects/logolaravel.png"
-    }, {
+    }, 
+    {
       id: 6,
       title: "Katalog Hampers ARTBENTOYOGYA",
       description: "Aplikasi Katalog berbentuk Website yang interaktif.",
       tech: ["React", "JavaScript", "Html"],
       github: "https://github.com/AdhielVincentius/webkatalogartbento",
       image: "/images/projects/logo.png"
+    },
+    {
+      id: 7,
+      title: "Website Cafe and Management System",
+      description: "Aplikasi Katalog Cafe dan isinya beserta Sistem Manajemennya.",
+      tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
+      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      image: "/images/projects/logolaravel.png"
+    },
+    {
+      id: 8,
+      title: "Website Company and Management System",
+      description: "Aplikasi Katalog dan Informasi Pemesanan Website untuk Company dan Sistem Manajemennya",
+      tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
+      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      image: "/images/projects/logolaravel.png"
+    }, 
+    {
+      id: 9,
+      title: "Aplikasi Booking Court Padel (Android IOS)",
+      description: "Aplikasi untuk Booking Court dan Coach",
+      tech: ["PostgreSQL", "Docker", "Flutter", "Dart"],
+      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      image: "/images/icon.jpeg"
     }
   ],
   

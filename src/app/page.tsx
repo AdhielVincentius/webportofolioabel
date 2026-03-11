@@ -310,12 +310,17 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Menampilkan semua projects tanpa filter */}
+          {/* Menampilkan SEMUA projects tanpa batasan */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {portfolioData.projects.slice(0, 6).map((project) => (
+            {portfolioData.projects.map((project) => (
               <ProjectCard key={project.id} {...project} />
             ))}
           </div>
+
+          {/* Optional: Tampilkan pesan jika tidak ada project */}
+          {portfolioData.projects.length === 0 && (
+            <p className="text-center text-gray-500">No projects to display</p>
+          )}
         </div>
       </section>
 
@@ -425,7 +430,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:email@example.com"
+              href="mailto:vincent.adhiel28@gmail.com"
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition font-medium inline-flex items-center gap-2 justify-center"
             >
               <Mail className="w-5 h-5" />
