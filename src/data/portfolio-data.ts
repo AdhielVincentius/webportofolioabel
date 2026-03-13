@@ -124,7 +124,7 @@ export const portfolioData = {
     {
       role: "Freelance Software Developer",
       company: "Freelance",
-      period: "September 2024 - November 2025",
+      period: "Maret 2024 - Maret 2026",
       description: "Bertanggung jawab dalam merancang dalam team untuk perancangan dari gambaran kasar hingga produk jadi, mengembangkan solusi front-end dan back-end"
     },
     {
