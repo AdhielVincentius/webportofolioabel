@@ -1,6 +1,6 @@
 export const portfolioData = {
   name: "Adhiel Asiabel",
-  title: "Front - End Web Developer, Back – End Web Developer, UI UX Designer, Data Analys, Mobile Developer | IT Enthusiast",
+  title: "Front-End Web Developer, Back-End Web Developer, UI/UX Designer, Data Analyst, Mobile Developer | IT Enthusiast",
   email: "vincent.adhiel28@gmail.com",
   github: "https://github.com/adhielvincentius",
   linkedin: "https://linkedin.com/in/adhielasiabel",
@@ -9,7 +9,7 @@ export const portfolioData = {
   location: "Yogyakarta, Indonesia",
   photo: "/images/fotopas.png",
   
-  about: "Fresh Graduate Informatika dari Universitas Sanata Dharma Yogyakarta yang memiliki minat pada pengembangan web dan teknologi informasi. Berpengalaman dalam merancang dan mengembangkan sistem berbasis website maupun aplikasi mobile, baik pada sisi front-end maupun back-end. Selain itu, memiliki kemampuan dalam IT Support, UI/UX design, serta video editing untuk mendukung pengembangan produk digital yang efektif dan menarik. Aktif dalam berbagai organisasi di tingkat Program Studi, Fakultas, dan Universitas yang membentuk kemampuan kolaborasi, komunikasi, dan kepemimpinan.",
+  about: "Fresh Graduate in Informatics from Universitas Sanata Dharma with a strong focus on web development. Experienced in building full-stack web applications using modern technologies such as React, Next.js, and Laravel. Skilled in both front-end and back-end development, with a good understanding of UI/UX principles. Passionate about creating scalable, user-friendly, and efficient web applications.",
   
   skills: [
     { name: "JavaScript", level: 90 },
@@ -27,24 +27,24 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
-      title: "Sistem Presensi Mahasiswa",
-      description: "Aplikasi web untuk mengelola Presensi Mahasiswa sebagai Dosen, Mahasiswa dan Admin",
-      tech: ["HTML", "MySQL", "Javascript"],
+      title: "Student Attendance System",
+      description: "Web application for managing student attendance for Lecturers, Students, and Admins",
+      tech: ["HTML", "MySQL", "JavaScript"],
       github: "https://github.com/AdhielVincentius/absensiswa",
       image: "/images/projects/web.png",
     },
     {
       id: 2,
-      title: "Tolong Aku",
-      description: "Aplikasi Mobile Android sebagai Layanan Darurat",
+      title: "Tolong Aku (Help Me)",
+      description: "Android Mobile Application for Emergency Services",
       tech: ["Android", "Kotlin", "Firebase", "OpenStreetMaps"],
       github: "https://github.com/adventaa/Aplikasi_Tolong_Aku",
       image: "/images/projects/icon.png",
     },
     {
       id: 3,
-      title: "Website Padel Livestream",
-      description: "Aplikasi web untuk merekam video dan Highlight Permainan Padel",
+      title: "Padel Livestream Website",
+      description: "Web application for recording videos and highlights of Padel games",
       tech: ["Laravel", "ffmpeg", "Firebase", "Supabase", "VPS", "Livewire"],
       github: "https://github.com/alexadma/PadelFix",
       image: "/images/projects/GETA APP.jpeg",
@@ -52,7 +52,7 @@ export const portfolioData = {
     {
       id: 4,
       title: "Vogency E-Commerce",
-      description: "E-Commerce yang dapat memberikan rekomendasi barang secara otomatis berdasarkan barang yang pernah dibeli dan dilihat",
+      description: "E-Commerce platform that provides automatic product recommendations based on previously purchased and viewed items",
       tech: ["Laravel", "PHP", "MySQL"],
       github: "https://github.com/AdhielVincentius/ecommerce-dashboard",
       image: "/images/projects/logolaravel.png",
@@ -60,39 +60,39 @@ export const portfolioData = {
     {
       id: 5,
       title: "SpeedCash Sales Dashboard",
-      description: "Aplikasi Dashboard untuk Monitoring Penjualan",
+      description: "Dashboard Application for Sales Monitoring",
       tech: ["Laravel", "PHP", "MySQL"],
       github: "https://github.com/AdhielVincentius/travel-app",
       image: "/images/projects/logolaravel.png"
     }, 
     {
       id: 6,
-      title: "Katalog Hampers ARTBENTOYOGYA",
-      description: "Aplikasi Katalog berbentuk Website yang interaktif.",
-      tech: ["React", "JavaScript", "Html"],
+      title: "ARTBENTOYOGYA Hampers Catalog",
+      description: "Interactive website-based catalog application.",
+      tech: ["React", "JavaScript", "HTML"],
       github: "https://github.com/AdhielVincentius/webkatalogartbento",
       image: "/images/projects/logo.png"
     },
     {
       id: 7,
-      title: "Website Cafe and Management System",
-      description: "Aplikasi Katalog Cafe dan isinya beserta Sistem Manajemennya.",
+      title: "Cafe Website and Management System",
+      description: "Cafe catalog application with its content and management system.",
       tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
       github: "https://github.com/AdhielVincentius/webkatalogartbento",
       image: "/images/projects/logolaravel.png"
     },
     {
       id: 8,
-      title: "Website Company and Management System",
-      description: "Aplikasi Katalog dan Informasi Pemesanan Website untuk Company dan Sistem Manajemennya",
+      title: "Company Website and Management System",
+      description: "Catalog and booking information website for Company with its management system",
       tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
       github: "https://github.com/AdhielVincentius/webkatalogartbento",
       image: "/images/projects/logolaravel.png"
     }, 
     {
       id: 9,
-      title: "Aplikasi Booking Court Padel (Android IOS)",
-      description: "Aplikasi untuk Booking Court dan Coach",
+      title: "Padel Court Booking Application (Android & iOS)",
+      description: "Application for booking courts and coaches",
       tech: ["PostgreSQL", "Docker", "Flutter", "Dart"],
       github: "https://github.com/AdhielVincentius/webkatalogartbento",
       image: "/images/icon.jpeg"
@@ -101,21 +101,21 @@ export const portfolioData = {
   
   education: [
     {
-      degree: "Sekolah Menengah Akhir",
+      degree: "Senior High School",
       university: "SMA Negeri 4 Yogyakarta, Yogyakarta",
       year: "2018 - 2021",
-      gpa: "80,21",
+      gpa: "80.21",
       achievements: [
-        "Rerata: 80,21"
+        "Average Score: 80.21"
       ]
-    }
-    ,{
-      degree: "S1 Teknik Informatika",
+    },
+    {
+      degree: "Bachelor of Informatics Engineering",
       university: "Universitas Sanata Dharma, Yogyakarta",
       year: "2021 - 2026",
       gpa: "3.56/4.0",
       achievements: [
-        "IPK: 3.56/4.0"
+        "GPA: 3.56/4.0"
       ]
     }
   ],
@@ -124,44 +124,44 @@ export const portfolioData = {
     {
       role: "Freelance Software Developer",
       company: "Freelance",
-      period: "Maret 2024 - Maret 2026",
-      description: "Bertanggung jawab dalam merancang dalam team untuk perancangan dari gambaran kasar hingga produk jadi, mengembangkan solusi front-end dan back-end"
+      period: "March 2024 - March 2026",
+      description: "Responsible for designing from initial concept to final product within a team, developing front-end and back-end solutions"
     },
     {
       role: "Student Staff - Media Editor & Multimedia",
-      company: "Biro Humas Universitas Sanata Dharma",
+      company: "Public Relations Bureau, Universitas Sanata Dharma",
       period: "November 2024 - November 2025",
-      description: "Bertanggung jawab dalam editing video milik Universitas dan mengurus dalam hal multimedia dalam lingkup Universitas"
+      description: "Responsible for video editing for the university and managing multimedia matters within the university scope"
     },
     {
-      role: "Student Staff - Kearsipan Perpustakaan",
-      company: "Perpustakaan Universitas Sanata Dharma",
-      period: "Maret 2024 - November 2024",
-      description: "Bertanggung jawab dalam Digitalisasi Aset Kearsipan dari bentuk Analog ke Digital"
+      role: "Student Staff - Library Archives",
+      company: "Library of Universitas Sanata Dharma",
+      period: "March 2024 - November 2024",
+      description: "Responsible for digitizing archival assets from analog to digital format"
     },
     {
-      role: "Anggota Divisi Documenta",
+      role: "Documentation Division Member",
       company: "INISIASI SANATA DHARMA MMXXIII",
       period: "February 2023 - October 2023",
-      description: "Berpartisipasi dalam proses Inisiasi Sanata Dharma 2023 sebagai dokumentasi dan multimedia dalam acara tersebut"
+      description: "Participated in the Sanata Dharma Initiation 2023 process as documentation and multimedia for the event"
     },
     {
-      role: "Koordinator Bagian Perlengkapan",
-      company: "Komisi Pemilihan Umum Fakultas Sains dan Teknologi",
+      role: "Equipment Coordinator",
+      company: "Election Commission of the Faculty of Science and Technology",
       period: "August 2022 - October 2022",
-      description: "Bertanggung jawab terhadap segala urusan tentang perlengkapan yang dibutuhkan dalam acara baik pra-acara, acara maupun pasca-acara"
+      description: "Responsible for all matters regarding equipment needed for pre-event, event, and post-event activities"
     }, 
     {
-      role: "Anggota Publikasi, Dekorasi, Dokumentasi",
-      company: "Kuliah Umum 2022 'Mengenal Metaverse di Dunia Virtual Masa Depan'",
+      role: "Publication, Decoration, Documentation Member",
+      company: "Public Lecture 2022 'Getting to Know the Metaverse in the Future Virtual World'",
       period: "August 2022 - August 2022",
-      description: "Bertanggung jawab terhadap urusan multimedia, sosial media serta dokumentasi yang dibutuhkan dalam acara"
+      description: "Responsible for multimedia, social media, and documentation needed for the event"
     },
     {
-      role: "Anggota Biro Media Informasi",
-      company: "Himpunan Mahasiswa Informatika",
+      role: "Media Information Bureau Member",
+      company: "Informatics Student Association",
       period: "September 2021 - November 2022",
-      description: "Berperan dalam lingkup multimedia dan sosial media yang menyangkut hubungan dengan Himpunan Mahasiswa Informatika"
+      description: "Played a role in multimedia and social media related to the Informatics Student Association"
     }
   ]
 };
