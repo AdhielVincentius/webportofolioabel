@@ -30,9 +30,37 @@ export default function Home() {
     setIsVisible(true);
   }, []);
 
+  // Function to handle resume download
+  const handleDownloadResume = async () => {
+    try {
+      // Fetch the PDF file
+      const response = await fetch('/resume/CV_AdhielAsiabel.pdf');
+      
+      if (!response.ok) {
+        throw new Error('File not found');
+      }
+      
+      // Get the file as blob
+      const blob = await response.blob();
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'CV_Adhiel_Asiabel.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      alert('File not found. Please contact the administrator.');
+    }
+  };
+
   return (
     <>
-      {/* Hero Section dengan Desain Modern */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 w-full h-full">
@@ -95,7 +123,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* CTA Buttons - Responsive Stack */}
+              {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a
                   href="#projects"
@@ -109,10 +137,11 @@ export default function Home() {
                 >
                   Contact Me
                 </a>
+                {/* Ganti dengan link langsung */}
                 <a
-                  href="/resume/CV_Adhiel Asiabel.pdf"
-                  download="Resume_Adhiel Asiabel.pdf"
-                  className="px-8 py-4 bg-transparent text-white rounded-xl hover:bg-white/10 transition-all transform hover:scale-105 font-medium border border-white/30 flex items-center justify-center gap-2"
+                  href="/resume/CV_AdhielAsiabel.pdf"
+                  download="CV_Adhiel_Asiabel.pdf"
+                  className="px-8 py-4 bg-transparent text-white rounded-xl hover:bg-white/10 transition-all transform hover:scale-105 font-medium border border-white/30 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                   Download Resume
@@ -146,7 +175,7 @@ export default function Home() {
                   <Instagram className="w-5 h-5 text-white" />
                 </a>
                 <a
-                  href="mailto:email@example.com"
+                  href={`mailto:${portfolioData.email || 'vincent.adhiel28@gmail.com'}`}
                   className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all transform hover:scale-110"
                 >
                   <Mail className="w-5 h-5 text-white" />
@@ -166,6 +195,9 @@ export default function Home() {
                     src={portfolioData.photo || "/images/default-profile.jpg"}
                     alt={portfolioData.name}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/400x400?text=Profile";
+                    }}
                   />
                 </div>
 
@@ -195,7 +227,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills Section dengan Desain Card Modern */}
+      {/* Rest of your sections remain the same */}
+      {/* Skills Section */}
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
@@ -292,7 +325,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section dengan Grid Responsif */}
+      {/* Projects Section */}
       <section id="projects" className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
@@ -310,21 +343,19 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Menampilkan SEMUA projects tanpa batasan */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {portfolioData.projects.map((project) => (
               <ProjectCard key={project.id} {...project} />
             ))}
           </div>
 
-          {/* Optional: Tampilkan pesan jika tidak ada project */}
           {portfolioData.projects.length === 0 && (
             <p className="text-center text-gray-500">No projects to display</p>
           )}
         </div>
       </section>
 
-      {/* Education & Experience dengan Timeline */}
+      {/* Education & Experience Section */}
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
@@ -430,7 +461,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:vincent.adhiel28@gmail.com"
+              href={`mailto:${portfolioData.email || 'vincent.adhiel28@gmail.com'}`}
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition font-medium inline-flex items-center gap-2 justify-center"
             >
               <Mail className="w-5 h-5" />
