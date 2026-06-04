@@ -22,6 +22,7 @@ import {
   Coffee,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,37 +31,9 @@ export default function Home() {
     setIsVisible(true);
   }, []);
 
-  // Function to handle resume download
-  const handleDownloadResume = async () => {
-    try {
-      // Fetch the PDF file
-      const response = await fetch('/resume/CV_AdhielAsiabel.pdf');
-      
-      if (!response.ok) {
-        throw new Error('File not found');
-      }
-      
-      // Get the file as blob
-      const blob = await response.blob();
-      
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'CV_Adhiel_Asiabel.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error downloading file:', error);
-      alert('File not found. Please contact the administrator.');
-    }
-  };
-
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section dengan Desain Modern */}
       <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 w-full h-full">
@@ -123,7 +96,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Responsive Stack */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a
                   href="#projects"
@@ -137,7 +110,6 @@ export default function Home() {
                 >
                   Contact Me
                 </a>
-                {/* Ganti dengan link langsung */}
                 <a
                   href="/resume/CV_AdhielAsiabel.pdf"
                   download="CV_Adhiel_Asiabel.pdf"
@@ -195,8 +167,9 @@ export default function Home() {
                     src={portfolioData.photo || "/images/default-profile.jpg"}
                     alt={portfolioData.name}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
-                    onError={(e) => {
-                      e.target.src = "https://via.placeholder.com/400x400?text=Profile";
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                      const target = e.currentTarget;
+                      target.src = "https://via.placeholder.com/400x400?text=Profile";
                     }}
                   />
                 </div>
@@ -227,7 +200,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Rest of your sections remain the same */}
       {/* Skills Section */}
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 sm:px-6">
@@ -355,7 +327,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Education & Experience Section */}
+      {/* Education & Experience */}
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
