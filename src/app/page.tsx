@@ -319,7 +319,7 @@ export default function Home() {
           </div>
 
           <div className="projects-grid">
-            {portfolioData.projects.map((project: { id: string | number }) => (
+            {portfolioData.projects.map((project) => (
               <ProjectCard key={project.id} {...project} />
             ))}
           </div>
