@@ -30,15 +30,17 @@ export const portfolioData = {
       title: "Student Attendance System",
       description: "Web application for managing student attendance for Lecturers, Students, and Admins",
       tech: ["HTML", "MySQL", "JavaScript"],
-      github: "https://github.com/AdhielVincentius/absensiswa",
+      github: null,
+      demo: null, // Tambahkan demo link
       image: "/images/projects/web.png",
     },
     {
       id: 2,
-      title: "Tolong Aku (Help Me)",
+      title: "Tolong Aku",
       description: "Android Mobile Application for Emergency Services",
       tech: ["Android", "Kotlin", "Firebase", "OpenStreetMaps"],
-      github: "https://github.com/adventaa/Aplikasi_Tolong_Aku",
+      github: null,
+      demo: null, // Tidak ada demo karena mobile app
       image: "/images/projects/icon.png",
     },
     {
@@ -46,7 +48,8 @@ export const portfolioData = {
       title: "Padel Livestream Website",
       description: "Web application for recording videos and highlights of Padel games",
       tech: ["Laravel", "ffmpeg", "Firebase", "Supabase", "VPS", "Livewire"],
-      github: "https://github.com/alexadma/PadelFix",
+      github: null,
+      demo: "https://geta-app.tv/", // Tambahkan demo link
       image: "/images/projects/GETA APP.jpeg",
     },
     {
@@ -54,7 +57,8 @@ export const portfolioData = {
       title: "Vogency E-Commerce",
       description: "E-Commerce platform that provides automatic product recommendations based on previously purchased and viewed items",
       tech: ["Laravel", "PHP", "MySQL"],
-      github: "https://github.com/AdhielVincentius/ecommerce-dashboard",
+      github: null,
+      demo: null, // Tambahkan demo link
       image: "/images/projects/logolaravel.png",
     },
     {
@@ -62,7 +66,8 @@ export const portfolioData = {
       title: "SpeedCash Sales Dashboard",
       description: "Dashboard Application for Sales Monitoring",
       tech: ["Laravel", "PHP", "MySQL"],
-      github: "https://github.com/AdhielVincentius/travel-app",
+      github: null,
+      demo: null, // Tambahkan demo link
       image: "/images/projects/logolaravel.png"
     }, 
     {
@@ -70,7 +75,8 @@ export const portfolioData = {
       title: "ARTBENTOYOGYA Hampers Catalog",
       description: "Interactive website-based catalog application.",
       tech: ["React", "JavaScript", "HTML"],
-      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      github: null,
+      demo: "https://katalogartbento.netlify.app/", // Tambahkan demo link
       image: "/images/projects/logo.png"
     },
     {
@@ -78,7 +84,8 @@ export const portfolioData = {
       title: "Cafe Website and Management System",
       description: "Cafe catalog application with its content and management system.",
       tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
-      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      github: null,
+      demo: "https://legareca-space.id", // Tambahkan demo link
       image: "/images/projects/logolaravel.png"
     },
     {
@@ -86,7 +93,8 @@ export const portfolioData = {
       title: "Company Website and Management System",
       description: "Catalog and booking information website for Company with its management system",
       tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
-      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      github: null,
+      demo: "https://santano.id", // Tambahkan demo link
       image: "/images/projects/logolaravel.png"
     }, 
     {
@@ -94,7 +102,17 @@ export const portfolioData = {
       title: "Padel Court Booking Application (Android & iOS)",
       description: "Application for booking courts and coaches",
       tech: ["PostgreSQL", "Docker", "Flutter", "Dart"],
-      github: "https://github.com/AdhielVincentius/webkatalogartbento",
+      github: null,
+      demo: null, // Tidak ada demo karena mobile app
+      image: "/images/icon.jpeg"
+    },
+    {
+      id: 10,
+      title: "Virtual ART Gallery Website",
+      description: "Virtual Art Gallery for showcasing artworks",
+      tech: ["PostgreSQL", "Docker", "Flutter", "Dart"],
+      github: null,
+      demo: null, // Tambahkan demo link
       image: "/images/icon.jpeg"
     }
   ],

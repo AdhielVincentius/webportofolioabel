@@ -9,7 +9,6 @@ import {
   Briefcase,
   Mail,
   MapPin,
-  ExternalLink,
   Github,
   Linkedin,
   Instagram,
@@ -20,275 +19,208 @@ import {
   Download,
   Award,
   Coffee,
+  ArrowDown,
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["projects", "contact"];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) setActiveSection(id);
+        }
+      }
+      if (window.scrollY < 100) setActiveSection("hero");
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Hero Section dengan Desain Modern */}
-      <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      {/* ─── FLOATING NAV ─── */}
+      <nav className="port-nav">
+        <div className="port-nav__inner">
+          <span className="port-nav__logo">
+            {(portfolioData.name || "AV").split(" ").map((w: string) => w[0]).join("")}
+          </span>
+          <div className="port-nav__links">
+            <a href="#" className={`port-nav__link ${activeSection === "hero" ? "port-nav__link--active" : ""}`}>Home</a>
+            <a href="#projects" className={`port-nav__link ${activeSection === "projects" ? "port-nav__link--active" : ""}`}>Projects</a>
+            <a href="#contact" className={`port-nav__link ${activeSection === "contact" ? "port-nav__link--active" : ""}`}>Contact</a>
+          </div>
         </div>
+      </nav>
 
-        <div className="container relative mx-auto px-4 sm:px-6 py-12 sm:py-20">
-          <div
-            className={`flex flex-col lg:flex-row items-center justify-between gap-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-          >
-            {/* Left Content */}
-            <div className="lg:w-1/2 text-center lg:text-left">
-              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
-                <Sparkles className="w-4 h-4 mr-2" />
-                <span className="text-sm">Available for work</span>
-              </div>
+      {/* ─── HERO ─── */}
+      <section className="hero">
+        {/* Scanline atmosphere */}
+        <div className="hero__scanline" aria-hidden="true" />
+        <div className="hero__grid" aria-hidden="true" />
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-                Hi, I'm{" "}
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  {portfolioData.name}
-                </span>
-              </h1>
+        <div className={`hero__content ${isVisible ? "hero__content--visible" : ""}`}>
+          {/* Left */}
+          <div className="hero__left">
+            <span className="hero__badge">
+              <Sparkles className="hero__badge-icon" />
+              Available for work
+            </span>
 
-              <p className="text-xl sm:text-2xl text-gray-300 mb-6">
-                {portfolioData.title}
-              </p>
+            <h1 className="hero__title">
+              Hi, I'm{" "}
+              <span className="hero__name">
+                {portfolioData.name}
+              </span>
+            </h1>
 
-              <p className="text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0 text-base sm:text-lg">
-                {portfolioData.about}
-              </p>
+            <p className="hero__subtitle">{portfolioData.title}</p>
+            <p className="hero__bio">{portfolioData.about}</p>
 
-              {/* Stats Cards */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 max-w-lg mx-auto lg:mx-0">
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <Code className="w-6 h-6 text-blue-400 mx-auto mb-2" />
-                  <div className="text-white font-bold text-xl">5+</div>
-                  <div className="text-gray-400 text-xs sm:text-sm">
-                    Projects
-                  </div>
+            {/* Stats */}
+            <div className="stats">
+              {[
+                { icon: <Code className="stat__icon stat__icon--blue" />, value: "5+", label: "Projects" },
+                { icon: <Video className="stat__icon stat__icon--violet" />, value: "20+", label: "Videos" },
+                { icon: <Award className="stat__icon stat__icon--amber" />, value: "3", label: "Certs" },
+                { icon: <Coffee className="stat__icon stat__icon--orange" />, value: "∞", label: "Coffee" },
+              ].map((s) => (
+                <div key={s.label} className="stat">
+                  {s.icon}
+                  <span className="stat__value">{s.value}</span>
+                  <span className="stat__label">{s.label}</span>
                 </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <Video className="w-6 h-6 text-purple-400 mx-auto mb-2" />
-                  <div className="text-white font-bold text-xl">20+</div>
-                  <div className="text-gray-400 text-xs sm:text-sm">Videos</div>
-                </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <Award className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
-                  <div className="text-white font-bold text-xl">3</div>
-                  <div className="text-gray-400 text-xs sm:text-sm">
-                    Certifications
-                  </div>
-                </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <Coffee className="w-6 h-6 text-amber-400 mx-auto mb-2" />
-                  <div className="text-white font-bold text-xl">∞</div>
-                  <div className="text-gray-400 text-xs sm:text-sm">Coffee</div>
-                </div>
-              </div>
-
-              {/* CTA Buttons - Responsive Stack */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a
-                  href="#projects"
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 font-medium text-center"
-                >
-                  View My Work
-                </a>
-                <a
-                  href="#contact"
-                  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-xl hover:bg-white/20 transition-all transform hover:scale-105 font-medium text-center border border-white/20"
-                >
-                  Contact Me
-                </a>
-                <a
-                  href="/resume/CV_AdhielAsiabel.pdf"
-                  download="CV_Adhiel_Asiabel.pdf"
-                  className="px-8 py-4 bg-transparent text-white rounded-xl hover:bg-white/10 transition-all transform hover:scale-105 font-medium border border-white/30 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <Download className="w-4 h-4" />
-                  Download Resume
-                </a>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex gap-4 mt-8 justify-center lg:justify-start">
-                <a
-                  href={portfolioData.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all transform hover:scale-110"
-                >
-                  <Github className="w-5 h-5 text-white" />
-                </a>
-                <a
-                  href={portfolioData.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all transform hover:scale-110"
-                >
-                  <Linkedin className="w-5 h-5 text-white" />
-                </a>
-                <a
-                  href={portfolioData.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all transform hover:scale-110"
-                >
-                  <Instagram className="w-5 h-5 text-white" />
-                </a>
-                <a
-                  href={`mailto:${portfolioData.email || 'vincent.adhiel28@gmail.com'}`}
-                  className="p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-all transform hover:scale-110"
-                >
-                  <Mail className="w-5 h-5 text-white" />
-                </a>
-              </div>
+              ))}
             </div>
 
-            {/* Right Content - Photo */}
-            <div className="lg:w-1/2 flex justify-center">
-              <div className="relative group">
-                {/* Animated Circle */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-spin-slow"></div>
+            {/* CTAs */}
+            <div className="hero__ctas">
+              <a href="#projects" className="btn btn--primary">View My Work</a>
+              <a href="#contact" className="btn btn--ghost">Contact Me</a>
+              <a
+                href="/resume/CV_AdhielAsiabel.pdf"
+                download="CV_Adhiel_Asiabel.pdf"
+                className="btn btn--outline"
+              >
+                <Download className="btn__icon" />
+                Resume
+              </a>
+            </div>
 
-                {/* Photo Container */}
-                <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
-                  <img
-                    src={portfolioData.photo || "/images/default-profile.jpg"}
-                    alt={portfolioData.name}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                      const target = e.currentTarget;
-                      target.src = "https://via.placeholder.com/400x400?text=Profile";
-                    }}
-                  />
-                </div>
+            {/* Social */}
+            <div className="hero__socials">
+              {[
+                { href: portfolioData.github, icon: <Github size={18} />, label: "GitHub" },
+                { href: portfolioData.linkedin, icon: <Linkedin size={18} />, label: "LinkedIn" },
+                { href: portfolioData.instagram, icon: <Instagram size={18} />, label: "Instagram" },
+                { href: `mailto:${portfolioData.email || "vincent.adhiel28@gmail.com"}`, icon: <Mail size={18} />, label: "Email" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target={s.href?.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  className="social-btn"
+                  aria-label={s.label}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
 
-                {/* Floating Badges */}
-                <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full shadow-xl transform group-hover:scale-110 transition">
-                  <span className="flex items-center gap-2 text-sm">
-                    <Code2 className="w-4 h-4" />
-                    Developer
-                  </span>
-                </div>
-                <div className="absolute -top-4 -left-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full shadow-xl transform group-hover:scale-110 transition">
-                  <span className="flex items-center gap-2 text-sm">
-                    <Video className="w-4 h-4" />
-                    Editor
-                  </span>
-                </div>
+          {/* Right – photo */}
+          <div className="hero__right">
+            <div className="avatar-wrap">
+              <div className="avatar-wrap__ring" aria-hidden="true" />
+              <div className="avatar-wrap__photo">
+                <img
+                  src={portfolioData.photo || "/images/default-profile.jpg"}
+                  alt={portfolioData.name}
+                  className="avatar-wrap__img"
+                  onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                    e.currentTarget.src = "https://via.placeholder.com/400x400?text=Photo";
+                  }}
+                />
               </div>
+              <span className="avatar-badge avatar-badge--br">
+                <Code2 size={14} /> Developer
+              </span>
+              <span className="avatar-badge avatar-badge--tl">
+                <Video size={14} /> Editor
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-scroll"></div>
-          </div>
-        </div>
+        {/* Scroll cue */}
+        <a href="#skills" className="hero__scroll-cue" aria-label="Scroll down">
+          <ArrowDown size={18} />
+        </a>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">
-              What I Do
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mt-2">
-              Technical{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Skills
-              </span>
-            </h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              Combining development expertise with creative video editing
-              capabilities
-            </p>
+      {/* ─── SKILLS ─── */}
+      <section id="skills" className="section section--light">
+        <div className="section__container">
+          <div className="section__head">
+            <span className="eyebrow">What I Do</span>
+            <h2 className="section__title">Technical <em>Skills</em></h2>
+            <p className="section__desc">Development craft meets creative storytelling.</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Programming Skills */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 hover:shadow-2xl transition">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-blue-100 rounded-xl">
-                  <Code2 className="w-6 h-6 text-blue-600" />
+          <div className="skills-grid">
+            {/* Dev skills */}
+            <div className="card">
+              <div className="card__header">
+                <div className="card__icon card__icon--blue">
+                  <Code2 size={20} />
                 </div>
-                <h3 className="text-2xl font-bold">Development</h3>
+                <h3 className="card__title">Development</h3>
               </div>
-              <div className="space-y-6">
-                {portfolioData.skills.map((skill) => (
+              <div className="skill-list">
+                {portfolioData.skills.map((skill: { name: string }) => (
                   <SkillBadge key={skill.name} {...skill} />
                 ))}
               </div>
             </div>
 
-            {/* Tools & Video Editing Skills */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 hover:shadow-2xl transition">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-purple-100 rounded-xl">
-                  <Video className="w-6 h-6 text-purple-600" />
+            {/* Tools */}
+            <div className="card">
+              <div className="card__header">
+                <div className="card__icon card__icon--violet">
+                  <Video size={20} />
                 </div>
-                <h3 className="text-2xl font-bold">Video & Tools</h3>
+                <h3 className="card__title">Video & Tools</h3>
               </div>
 
-              {/* Video Editing Skills */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold mb-4">Video Editing</h4>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    "Adobe Premiere Pro",
-                    "After Effects",
-                    "DaVinci Resolve",
-                    "Final Cut Pro",
-                    "CapCut",
-                    "Filmora",
-                  ].map((tool) => (
-                    <div
-                      key={tool}
-                      className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition"
-                    >
-                      <Camera className="w-4 h-4 text-purple-600" />
-                      <span className="text-sm font-medium">{tool}</span>
+              <div className="tools-block">
+                <h4 className="tools-block__title">Video Editing</h4>
+                <div className="tools-grid">
+                  {["Adobe Premiere Pro", "After Effects", "DaVinci Resolve", "Final Cut Pro", "CapCut", "Filmora"].map((t) => (
+                    <div key={t} className="tool-chip tool-chip--video">
+                      <Camera size={13} />
+                      <span>{t}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Development Tools */}
-              <div>
-                <h4 className="text-lg font-semibold mb-4">
-                  Development Tools
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "VS Code",
-                    "GitHub",
-                    "Figma",
-                    "Docker",
-                    "Postman",
-                    "Linux",
-                    "Vercel",
-                    "Netlify",
-                  ].map((tool) => (
-                    <span
-                      key={tool}
-                      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition text-sm"
-                    >
-                      {tool}
-                    </span>
+              <div className="tools-block">
+                <h4 className="tools-block__title">Dev Tools</h4>
+                <div className="tags">
+                  {["VS Code", "GitHub", "Figma", "Docker", "Postman", "Linux", "Vercel", "Netlify"].map((t) => (
+                    <span key={t} className="tag">{t}</span>
                   ))}
                 </div>
               </div>
@@ -297,84 +229,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">
-              Portfolio
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mt-2">
-              Featured{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Projects
-              </span>
-            </h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              A collection of my best work in development and video editing
-            </p>
+      {/* ─── PROJECTS ─── */}
+      <section id="projects" className="section section--white">
+        <div className="section__container">
+          <div className="section__head">
+            <span className="eyebrow">Portfolio</span>
+            <h2 className="section__title">Featured <em>Projects</em></h2>
+            <p className="section__desc">Selected work in development and video editing.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {portfolioData.projects.map((project) => (
+          <div className="projects-grid">
+            {portfolioData.projects.map((project: { id: string | number }) => (
               <ProjectCard key={project.id} {...project} />
             ))}
           </div>
 
           {portfolioData.projects.length === 0 && (
-            <p className="text-center text-gray-500">No projects to display</p>
+            <p className="empty-state">No projects to display yet.</p>
           )}
         </div>
       </section>
 
-      {/* Education & Experience */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">
-              Journey
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mt-2">
-              Education &{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Experience
-              </span>
-            </h2>
+      {/* ─── EDUCATION & EXPERIENCE ─── */}
+      <section className="section section--light">
+        <div className="section__container">
+          <div className="section__head">
+            <span className="eyebrow">Journey</span>
+            <h2 className="section__title">Education & <em>Experience</em></h2>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Education Timeline */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-blue-100 rounded-xl">
-                  <GraduationCap className="w-6 h-6 text-blue-600" />
+          <div className="journey-grid">
+            {/* Education */}
+            <div className="card">
+              <div className="card__header">
+                <div className="card__icon card__icon--blue">
+                  <GraduationCap size={20} />
                 </div>
-                <h3 className="text-2xl font-bold">Education</h3>
+                <h3 className="card__title">Education</h3>
               </div>
-
-              <div className="space-y-6">
-                {portfolioData.education.map((edu, index) => (
-                  <div
-                    key={index}
-                    className="relative pl-8 pb-6 border-l-2 border-blue-200 last:pb-0"
-                  >
-                    <div className="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
-                    <div className="bg-blue-50 rounded-xl p-6 hover:shadow-lg transition">
-                      <span className="text-sm text-blue-600 font-semibold">
-                        {edu.year}
-                      </span>
-                      <h4 className="text-xl font-bold text-gray-800 mt-1">
-                        {edu.degree}
-                      </h4>
-                      <p className="text-gray-600">{edu.university}</p>
-                      <div className="flex items-center gap-4 mt-3">
-                        <span className="text-sm text-gray-500">
-                          GPA: {edu.gpa}
-                        </span>
-                        <span className="text-sm text-gray-500 flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          Indonesia
-                        </span>
+              <div className="timeline">
+                {portfolioData.education.map((edu: { year: string; degree: string; university: string; gpa: string }, i: number) => (
+                  <div key={i} className="timeline__item">
+                    <div className="timeline__dot timeline__dot--blue" />
+                    <div className="timeline__body">
+                      <span className="timeline__period">{edu.year}</span>
+                      <h4 className="timeline__role">{edu.degree}</h4>
+                      <p className="timeline__org">{edu.university}</p>
+                      <div className="timeline__meta">
+                        <span>GPA: {edu.gpa}</span>
+                        <span className="timeline__meta-sep" /><MapPin size={12} /> Indonesia
                       </div>
                     </div>
                   </div>
@@ -382,33 +285,23 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Experience Timeline */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-purple-100 rounded-xl">
-                  <Briefcase className="w-6 h-6 text-purple-600" />
+            {/* Experience */}
+            <div className="card">
+              <div className="card__header">
+                <div className="card__icon card__icon--violet">
+                  <Briefcase size={20} />
                 </div>
-                <h3 className="text-2xl font-bold">Experience</h3>
+                <h3 className="card__title">Experience</h3>
               </div>
-
-              <div className="space-y-6">
-                {portfolioData.experiences.map((exp, index) => (
-                  <div
-                    key={index}
-                    className="relative pl-8 pb-6 border-l-2 border-purple-200 last:pb-0"
-                  >
-                    <div className="absolute left-[-9px] top-0 w-4 h-4 bg-purple-600 rounded-full"></div>
-                    <div className="bg-purple-50 rounded-xl p-6 hover:shadow-lg transition">
-                      <span className="text-sm text-purple-600 font-semibold">
-                        {exp.period}
-                      </span>
-                      <h4 className="text-xl font-bold text-gray-800 mt-1">
-                        {exp.role}
-                      </h4>
-                      <p className="text-gray-600 font-medium">{exp.company}</p>
-                      <p className="text-gray-700 mt-3 leading-relaxed">
-                        {exp.description}
-                      </p>
+              <div className="timeline">
+                {portfolioData.experiences.map((exp: { period: string; role: string; company: string; description: string }, i: number) => (
+                  <div key={i} className="timeline__item">
+                    <div className="timeline__dot timeline__dot--violet" />
+                    <div className="timeline__body">
+                      <span className="timeline__period">{exp.period}</span>
+                      <h4 className="timeline__role">{exp.role}</h4>
+                      <p className="timeline__org">{exp.company}</p>
+                      <p className="timeline__desc">{exp.description}</p>
                     </div>
                   </div>
                 ))}
@@ -418,87 +311,389 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section
-        id="contact"
-        className="py-20 bg-gradient-to-br from-slate-900 to-purple-900"
-      >
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Let's Work Together
-          </h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Interested in collaborating or have a project in mind? Let's create
-            something amazing together.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`mailto:${portfolioData.email || 'vincent.adhiel28@gmail.com'}`}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition font-medium inline-flex items-center gap-2 justify-center"
-            >
-              <Mail className="w-5 h-5" />
-              Send Message
-            </a>
-            <a
-              href={portfolioData.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-xl hover:bg-white/20 transition font-medium inline-flex items-center gap-2 justify-center border border-white/20"
-            >
-              <Github className="w-5 h-5" />
-              GitHub
-            </a>
+      {/* ─── CONTACT ─── */}
+      <section id="contact" className="section section--dark">
+        <div className="section__container">
+          <div className="contact-inner">
+            <span className="eyebrow eyebrow--light">Get in touch</span>
+            <h2 className="section__title section__title--light">
+              Let's Work <em>Together</em>
+            </h2>
+            <p className="section__desc section__desc--light">
+              Have a project in mind or just want to say hi? I'm always open to new collaborations.
+            </p>
+            <div className="contact-ctas">
+              <a
+                href={`mailto:${portfolioData.email || "vincent.adhiel28@gmail.com"}`}
+                className="btn btn--primary"
+              >
+                <Mail className="btn__icon" /> Send Message
+              </a>
+              <a
+                href={portfolioData.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--ghost"
+              >
+                <Github className="btn__icon" /> GitHub
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
+      {/* ─── GLOBAL STYLES ─── */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+          --navy:    #080E1E;
+          --navy-2:  #0E1729;
+          --navy-3:  #141E35;
+          --blue:    #4F8EF7;
+          --blue-dim:#243554;
+          --violet:  #A78BFA;
+          --violet-dim:#2D2050;
+          --amber:   #F59E0B;
+          --orange:  #FB923C;
+          --slate-50:#F8FAFC;
+          --slate-100:#F1F5F9;
+          --slate-200:#E2E8F0;
+          --slate-400:#94A3B8;
+          --slate-600:#475569;
+          --slate-800:#1E293B;
+          --white:   #FFFFFF;
+          --text-on-dark: #CBD5E1;
+          --radius:  14px;
+          --shadow:  0 4px 24px rgba(0,0,0,.08);
+          --shadow-lg: 0 8px 40px rgba(0,0,0,.12);
         }
-        .animate-blob {
-          animation: blob 7s infinite;
+
+        html { scroll-behavior: smooth; }
+
+        body {
+          font-family: 'Inter', system-ui, sans-serif;
+          background: var(--white);
+          color: var(--slate-800);
+          -webkit-font-smoothing: antialiased;
         }
-        .animation-delay-2000 {
-          animation-delay: 2s;
+
+        em { font-style: normal; background: linear-gradient(135deg, var(--blue), var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* ── NAV ── */
+        .port-nav {
+          position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+          z-index: 100; width: calc(100% - 32px); max-width: 640px;
         }
-        .animation-delay-4000 {
-          animation-delay: 4s;
+        .port-nav__inner {
+          background: rgba(8,14,30,.75); backdrop-filter: blur(16px);
+          border: 1px solid rgba(255,255,255,.08); border-radius: 50px;
+          padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;
         }
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+        .port-nav__logo {
+          font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px;
+          background: linear-gradient(135deg, var(--blue), var(--violet));
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
+        .port-nav__links { display: flex; gap: 4px; }
+        .port-nav__link {
+          color: var(--text-on-dark); font-size: 13px; font-weight: 500;
+          padding: 6px 14px; border-radius: 50px; text-decoration: none;
+          transition: all .2s;
         }
-        @keyframes scroll {
-          0% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(15px);
-            opacity: 0;
-          }
+        .port-nav__link:hover, .port-nav__link--active {
+          background: rgba(79,142,247,.15); color: var(--blue);
         }
-        .animate-scroll {
-          animation: scroll 2s infinite;
+
+        /* ── HERO ── */
+        .hero {
+          position: relative; min-height: 100svh;
+          background: var(--navy);
+          display: flex; align-items: center;
+          overflow: hidden; padding: 96px 24px 80px;
+        }
+        .hero__grid {
+          position: absolute; inset: 0;
+          background-image:
+            linear-gradient(rgba(79,142,247,.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(79,142,247,.04) 1px, transparent 1px);
+          background-size: 48px 48px;
+        }
+        .hero__scanline {
+          position: absolute; left: 0; right: 0; height: 2px;
+          background: linear-gradient(90deg, transparent, var(--blue), transparent);
+          animation: scanline 6s linear infinite; opacity: .3;
+        }
+        @keyframes scanline { from { top: -2px; } to { top: 100%; } }
+
+        .hero__content {
+          position: relative; width: 100%; max-width: 1100px; margin: 0 auto;
+          display: flex; flex-direction: column; align-items: center; gap: 48px;
+          opacity: 0; transform: translateY(24px);
+          transition: opacity .8s ease, transform .8s ease;
+        }
+        .hero__content--visible { opacity: 1; transform: translateY(0); }
+
+        @media (min-width: 1024px) {
+          .hero__content { flex-direction: row; align-items: center; justify-content: space-between; }
+          .hero__left { flex: 1; }
+          .hero__right { flex: 0 0 auto; }
+        }
+
+        .hero__left { text-align: center; }
+        @media (min-width: 1024px) { .hero__left { text-align: left; } }
+
+        .hero__badge {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: rgba(79,142,247,.12); border: 1px solid rgba(79,142,247,.25);
+          color: var(--blue); font-size: 13px; font-weight: 500;
+          padding: 7px 16px; border-radius: 50px; margin-bottom: 24px;
+        }
+        .hero__badge-icon { width: 13px; height: 13px; }
+
+        .hero__title {
+          font-family: 'Syne', sans-serif; font-size: clamp(2rem, 6vw, 3.75rem);
+          font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 12px;
+        }
+        .hero__name {
+          background: linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%);
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero__subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--text-on-dark);
+          font-weight: 500; margin-bottom: 16px;
+        }
+        .hero__bio {
+          font-size: 15px; color: var(--slate-400); line-height: 1.7;
+          max-width: 480px; margin: 0 auto 32px; 
+        }
+        @media (min-width: 1024px) { .hero__bio { margin-left: 0; } }
+
+        /* Stats */
+        .stats {
+          display: grid; grid-template-columns: repeat(4, 1fr);
+          gap: 10px; margin-bottom: 32px; max-width: 400px; margin-left: auto; margin-right: auto;
+        }
+        @media (min-width: 1024px) { .stats { margin-left: 0; margin-right: 0; } }
+        .stat {
+          background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+          border-radius: 12px; padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+          transition: background .2s, transform .2s;
+        }
+        .stat:hover { background: rgba(255,255,255,.07); transform: translateY(-2px); }
+        .stat__icon { width: 20px; height: 20px; }
+        .stat__icon--blue { color: var(--blue); }
+        .stat__icon--violet { color: var(--violet); }
+        .stat__icon--amber { color: var(--amber); }
+        .stat__icon--orange { color: var(--orange); }
+        .stat__value { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); }
+        .stat__label { font-size: 11px; color: var(--slate-400); }
+
+        /* Buttons */
+        .hero__ctas {
+          display: flex; flex-wrap: wrap; gap: 10px;
+          justify-content: center; margin-bottom: 28px;
+        }
+        @media (min-width: 1024px) { .hero__ctas { justify-content: flex-start; } }
+
+        .btn {
+          display: inline-flex; align-items: center; gap: 7px;
+          padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600;
+          text-decoration: none; transition: all .2s; white-space: nowrap; cursor: pointer; border: none;
+        }
+        .btn__icon { width: 16px; height: 16px; flex-shrink: 0; }
+        .btn--primary {
+          background: linear-gradient(135deg, var(--blue), var(--violet));
+          color: var(--white); box-shadow: 0 4px 16px rgba(79,142,247,.35);
+        }
+        .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(79,142,247,.45); }
+        .btn--ghost {
+          background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+          color: var(--white);
+        }
+        .btn--ghost:hover { background: rgba(255,255,255,.13); }
+        .btn--outline {
+          background: transparent; border: 1px solid rgba(255,255,255,.2);
+          color: var(--slate-400);
+        }
+        .btn--outline:hover { border-color: rgba(255,255,255,.4); color: var(--white); }
+
+        /* Socials */
+        .hero__socials { display: flex; gap: 10px; justify-content: center; }
+        @media (min-width: 1024px) { .hero__socials { justify-content: flex-start; } }
+        .social-btn {
+          display: flex; align-items: center; justify-content: center;
+          width: 42px; height: 42px; border-radius: 10px;
+          background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09);
+          color: var(--slate-400); text-decoration: none; transition: all .2s;
+        }
+        .social-btn:hover { background: rgba(79,142,247,.15); color: var(--blue); border-color: rgba(79,142,247,.3); transform: translateY(-2px); }
+
+        /* Avatar */
+        .avatar-wrap {
+          position: relative; display: inline-flex; align-items: center; justify-content: center;
+        }
+        .avatar-wrap__ring {
+          position: absolute; inset: -6px; border-radius: 50%;
+          background: linear-gradient(135deg, var(--blue), var(--violet));
+          animation: spin 10s linear infinite; opacity: .7;
+          mask-image: radial-gradient(transparent 68%, black 70%);
+          -webkit-mask-image: radial-gradient(transparent 68%, black 70%);
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .avatar-wrap__photo {
+          position: relative; width: 220px; height: 220px;
+          border-radius: 50%; overflow: hidden;
+          border: 3px solid rgba(255,255,255,.15);
+          box-shadow: 0 0 60px rgba(79,142,247,.2);
+        }
+        @media (min-width: 640px) { .avatar-wrap__photo { width: 280px; height: 280px; } }
+        @media (min-width: 1024px) { .avatar-wrap__photo { width: 320px; height: 320px; } }
+        .avatar-wrap__img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+        .avatar-wrap:hover .avatar-wrap__img { transform: scale(1.05); }
+        .avatar-badge {
+          position: absolute; display: inline-flex; align-items: center; gap: 6px;
+          padding: 7px 14px; border-radius: 50px; font-size: 12px; font-weight: 600;
+          color: var(--white); box-shadow: var(--shadow-lg);
+        }
+        .avatar-badge--br {
+          bottom: 8px; right: -8px;
+          background: linear-gradient(135deg, var(--blue), #3B5FCC);
+        }
+        .avatar-badge--tl {
+          top: 8px; left: -8px;
+          background: linear-gradient(135deg, var(--violet), #7C3AED);
+        }
+
+        /* Scroll cue */
+        .hero__scroll-cue {
+          position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+          color: var(--slate-400); text-decoration: none;
+          animation: bounce 2s ease-in-out infinite;
+          transition: color .2s;
+        }
+        .hero__scroll-cue:hover { color: var(--blue); }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+        /* ── SECTIONS ── */
+        .section { padding: 80px 24px; }
+        .section--light { background: var(--slate-50); }
+        .section--white { background: var(--white); }
+        .section--dark {
+          background: var(--navy);
+          background-image: linear-gradient(135deg, var(--navy) 0%, #1A0A35 100%);
+        }
+        .section__container { max-width: 1100px; margin: 0 auto; }
+        .section__head { text-align: center; margin-bottom: 52px; }
+        .eyebrow {
+          display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .12em;
+          text-transform: uppercase; color: var(--blue); margin-bottom: 10px;
+        }
+        .eyebrow--light { color: var(--blue); }
+        .section__title {
+          font-family: 'Syne', sans-serif; font-size: clamp(1.75rem, 4vw, 2.5rem);
+          font-weight: 800; color: var(--slate-800); line-height: 1.15;
+        }
+        .section__title--light { color: var(--white); }
+        .section__desc { margin-top: 12px; color: var(--slate-400); font-size: 15px; max-width: 480px; margin-left: auto; margin-right: auto; }
+        .section__desc--light { color: var(--text-on-dark); }
+
+        /* ── CARDS ── */
+        .skills-grid, .journey-grid {
+          display: grid; gap: 24px;
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+          .skills-grid, .journey-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .card {
+          background: var(--white); border-radius: var(--radius);
+          border: 1px solid var(--slate-200); padding: 28px 28px 32px;
+          box-shadow: var(--shadow); transition: box-shadow .25s, transform .25s;
+        }
+        .section--light .card { background: var(--white); }
+        .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+        .card__header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+        .card__icon {
+          display: flex; align-items: center; justify-content: center;
+          width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+        }
+        .card__icon--blue { background: rgba(79,142,247,.1); color: var(--blue); }
+        .card__icon--violet { background: rgba(167,139,250,.1); color: var(--violet); }
+        .card__title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--slate-800); }
+
+        /* ── SKILL LIST ── */
+        .skill-list { display: flex; flex-direction: column; gap: 14px; }
+
+        /* ── TOOLS ── */
+        .tools-block { margin-bottom: 24px; }
+        .tools-block:last-child { margin-bottom: 0; }
+        .tools-block__title { font-size: 13px; font-weight: 600; color: var(--slate-600); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .tool-chip {
+          display: flex; align-items: center; gap: 7px;
+          padding: 9px 12px; border-radius: 9px; font-size: 13px; font-weight: 500;
+          transition: background .2s;
+        }
+        .tool-chip--video { background: rgba(167,139,250,.08); color: var(--slate-600); border: 1px solid rgba(167,139,250,.15); }
+        .tool-chip--video:hover { background: rgba(167,139,250,.14); }
+        .tool-chip--video svg { color: var(--violet); flex-shrink: 0; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag {
+          padding: 7px 13px; background: var(--slate-100); border: 1px solid var(--slate-200);
+          border-radius: 8px; font-size: 13px; color: var(--slate-600); transition: all .2s;
+        }
+        .tag:hover { background: rgba(79,142,247,.08); border-color: rgba(79,142,247,.2); color: var(--blue); }
+
+        /* ── PROJECTS GRID ── */
+        .projects-grid { display: grid; gap: 24px; }
+        @media (min-width: 640px) { .projects-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1024px) { .projects-grid { grid-template-columns: 1fr 1fr 1fr; } }
+        .empty-state { text-align: center; color: var(--slate-400); padding: 48px 0; }
+
+        /* ── TIMELINE ── */
+        .timeline { display: flex; flex-direction: column; gap: 0; }
+        .timeline__item {
+          position: relative; padding-left: 26px; padding-bottom: 28px;
+          border-left: 2px solid var(--slate-200);
+        }
+        .timeline__item:last-child { padding-bottom: 0; border-left-color: transparent; }
+        .timeline__dot {
+          position: absolute; left: -7px; top: 4px;
+          width: 12px; height: 12px; border-radius: 50%;
+        }
+        .timeline__dot--blue { background: var(--blue); box-shadow: 0 0 0 3px rgba(79,142,247,.18); }
+        .timeline__dot--violet { background: var(--violet); box-shadow: 0 0 0 3px rgba(167,139,250,.18); }
+        .timeline__body {
+          background: var(--slate-50); border: 1px solid var(--slate-200);
+          border-radius: 10px; padding: 16px 18px;
+        }
+        .timeline__period { font-size: 12px; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: .06em; }
+        .timeline__role { font-size: 16px; font-weight: 700; color: var(--slate-800); margin-top: 4px; }
+        .timeline__org { font-size: 14px; color: var(--slate-600); font-weight: 500; margin-top: 2px; }
+        .timeline__meta { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 12px; color: var(--slate-400); }
+        .timeline__meta-sep { width: 1px; height: 12px; background: var(--slate-300); }
+        .timeline__desc { font-size: 14px; color: var(--slate-600); margin-top: 8px; line-height: 1.65; }
+
+        /* ── CONTACT ── */
+        .contact-inner { text-align: center; max-width: 540px; margin: 0 auto; }
+        .contact-ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
+
+        /* ── RESPONSIVE FIXES ── */
+        @media (max-width: 480px) {
+          .hero { padding: 80px 20px 72px; }
+          .stats { grid-template-columns: repeat(2, 1fr); max-width: 280px; }
+          .hero__ctas { flex-direction: column; align-items: stretch; }
+          .btn { justify-content: center; }
+          .section { padding: 60px 20px; }
+          .card { padding: 22px 20px 26px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero__scanline, .avatar-wrap__ring, .hero__scroll-cue, .stat { animation: none !important; }
         }
       `}</style>
     </>
