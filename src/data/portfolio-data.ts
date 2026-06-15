@@ -30,8 +30,8 @@ export const portfolioData = {
       title: "Student Attendance System",
       description: "Web application for managing student attendance for Lecturers, Students, and Admins",
       tech: ["HTML", "MySQL", "JavaScript"],
-      github: null,
-      demo: null, // Tambahkan demo link
+      github: undefined,
+      demo: undefined, 
       image: "/images/projects/web.png",
     },
     {
@@ -39,8 +39,8 @@ export const portfolioData = {
       title: "Tolong Aku",
       description: "Android Mobile Application for Emergency Services",
       tech: ["Android", "Kotlin", "Firebase", "OpenStreetMaps"],
-      github: null,
-      demo: null, // Tidak ada demo karena mobile app
+      github: undefined,
+      demo: undefined, 
       image: "/images/projects/icon.png",
     },
     {
@@ -48,8 +48,8 @@ export const portfolioData = {
       title: "Padel Livestream Website",
       description: "Web application for recording videos and highlights of Padel games",
       tech: ["Laravel", "ffmpeg", "Firebase", "Supabase", "VPS", "Livewire"],
-      github: null,
-      demo: "https://geta-app.tv/", // Tambahkan demo link
+      github: undefined,
+      demo: "https://geta-app.tv/", 
       image: "/images/projects/GETA APP.jpeg",
     },
     {
@@ -57,8 +57,8 @@ export const portfolioData = {
       title: "Vogency E-Commerce",
       description: "E-Commerce platform that provides automatic product recommendations based on previously purchased and viewed items",
       tech: ["Laravel", "PHP", "MySQL"],
-      github: null,
-      demo: null, // Tambahkan demo link
+      github: undefined,
+      demo: undefined, 
       image: "/images/projects/logolaravel.png",
     },
     {
@@ -66,8 +66,8 @@ export const portfolioData = {
       title: "SpeedCash Sales Dashboard",
       description: "Dashboard Application for Sales Monitoring",
       tech: ["Laravel", "PHP", "MySQL"],
-      github: null,
-      demo: null, // Tambahkan demo link
+      github: undefined,
+      demo: undefined, 
       image: "/images/projects/logolaravel.png"
     }, 
     {
@@ -75,8 +75,8 @@ export const portfolioData = {
       title: "ARTBENTOYOGYA Hampers Catalog",
       description: "Interactive website-based catalog application.",
       tech: ["React", "JavaScript", "HTML"],
-      github: null,
-      demo: "https://katalogartbento.netlify.app/", // Tambahkan demo link
+      github: undefined,
+      demo: "https://katalogartbento.netlify.app/", 
       image: "/images/projects/logo.png"
     },
     {
@@ -84,8 +84,8 @@ export const portfolioData = {
       title: "Cafe Website and Management System",
       description: "Cafe catalog application with its content and management system.",
       tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
-      github: null,
-      demo: "https://legareca-space.id", // Tambahkan demo link
+      github: undefined,
+      demo: "https://legareca-space.id", 
       image: "/images/projects/logolaravel.png"
     },
     {
@@ -93,8 +93,8 @@ export const portfolioData = {
       title: "Company Website and Management System",
       description: "Catalog and booking information website for Company with its management system",
       tech: ["Laravel", "JavaScript", "MariaDB", "PHP"],
-      github: null,
-      demo: "https://santano.id", // Tambahkan demo link
+      github: undefined,
+      demo: "https://santano.id", 
       image: "/images/projects/logolaravel.png"
     }, 
     {
@@ -102,8 +102,8 @@ export const portfolioData = {
       title: "Padel Court Booking Application (Android & iOS)",
       description: "Application for booking courts and coaches",
       tech: ["PostgreSQL", "Docker", "Flutter", "Dart"],
-      github: null,
-      demo: null, // Tidak ada demo karena mobile app
+      github: undefined,
+      demo: undefined, 
       image: "/images/icon.jpeg"
     },
     {
@@ -111,8 +111,8 @@ export const portfolioData = {
       title: "Virtual ART Gallery Website",
       description: "Virtual Art Gallery for showcasing artworks",
       tech: ["PostgreSQL", "Docker", "Flutter", "Dart"],
-      github: null,
-      demo: null, // Tambahkan demo link
+      github: undefined,
+      demo: undefined, 
       image: "/images/icon.jpeg"
     }
   ],

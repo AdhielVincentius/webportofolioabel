@@ -75,8 +75,8 @@ const portfolioData = {
                 "MySQL",
                 "JavaScript"
             ],
-            github: null,
-            demo: null,
+            github: undefined,
+            demo: undefined,
             image: "/images/projects/web.png"
         },
         {
@@ -89,8 +89,8 @@ const portfolioData = {
                 "Firebase",
                 "OpenStreetMaps"
             ],
-            github: null,
-            demo: null,
+            github: undefined,
+            demo: undefined,
             image: "/images/projects/icon.png"
         },
         {
@@ -105,7 +105,7 @@ const portfolioData = {
                 "VPS",
                 "Livewire"
             ],
-            github: null,
+            github: undefined,
             demo: "https://geta-app.tv/",
             image: "/images/projects/GETA APP.jpeg"
         },
@@ -118,8 +118,8 @@ const portfolioData = {
                 "PHP",
                 "MySQL"
             ],
-            github: null,
-            demo: null,
+            github: undefined,
+            demo: undefined,
             image: "/images/projects/logolaravel.png"
         },
         {
@@ -131,8 +131,8 @@ const portfolioData = {
                 "PHP",
                 "MySQL"
             ],
-            github: null,
-            demo: null,
+            github: undefined,
+            demo: undefined,
             image: "/images/projects/logolaravel.png"
         },
         {
@@ -144,7 +144,7 @@ const portfolioData = {
                 "JavaScript",
                 "HTML"
             ],
-            github: null,
+            github: undefined,
             demo: "https://katalogartbento.netlify.app/",
             image: "/images/projects/logo.png"
         },
@@ -158,7 +158,7 @@ const portfolioData = {
                 "MariaDB",
                 "PHP"
             ],
-            github: null,
+            github: undefined,
             demo: "https://legareca-space.id",
             image: "/images/projects/logolaravel.png"
         },
@@ -172,7 +172,7 @@ const portfolioData = {
                 "MariaDB",
                 "PHP"
             ],
-            github: null,
+            github: undefined,
             demo: "https://santano.id",
             image: "/images/projects/logolaravel.png"
         },
@@ -186,8 +186,8 @@ const portfolioData = {
                 "Flutter",
                 "Dart"
             ],
-            github: null,
-            demo: null,
+            github: undefined,
+            demo: undefined,
             image: "/images/icon.jpeg"
         },
         {
@@ -200,8 +200,8 @@ const portfolioData = {
                 "Flutter",
                 "Dart"
             ],
-            github: null,
-            demo: null,
+            github: undefined,
+            demo: undefined,
             image: "/images/icon.jpeg"
         }
     ],
