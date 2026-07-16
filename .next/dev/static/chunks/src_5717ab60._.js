@@ -223,7 +223,7 @@ const portfolioData = {
         {
             role: "Freelance Software Developer",
             company: "Freelance",
-            period: "March 2024 - March 2026",
+            period: "March 2025 - March 2026",
             description: "Responsible for designing from initial concept to final product within a team, developing front-end and back-end solutions"
         },
         {
